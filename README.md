@@ -16,6 +16,7 @@ The MIT License (MIT)
 - phantomjs updated to 1.9.8
 - nodejs updated to 0.10.33
 - upgraded to ubuntu 14.04 (trusty)
+- upgraded cookbooks for chef and added chef-sugar dependency
 
 ## 1.0.4
 - phantomjs 1.9.7 fixed

@@ -2,6 +2,7 @@ name: ubuntu14.04-webessentials
 version: 2.0.0
 type: main
 platform: ubuntu@14.04
+inherits: ruudk/ubuntu14.04@1.0.0
 description: Base box with most popular libraries for the web installed
 keywords:
   - ubuntu
@@ -15,8 +16,11 @@ packages:
   - git-core
   - nano
   - language-pack-en
-  - nodejs@0.10.26
+  - nodejs@0.10.33
   - npm@1.4.3
+  - grunt
+  - gulp
+  - bower
   - erlang
   - openjdk-6-jre
   - ruby1.9.3
@@ -54,14 +58,7 @@ packages:
 script: |
 
   sudo apt-get update
-  sudo apt-get install -y update-manager-core
-  sudo do-release-upgrade -f DistUpgradeViewNonInteractive -m server -d
-  sudo apt-get install -y aptitude
-  sudo aptitude update
-  sudo aptitude safe-upgrade
-
-  sudo apt-get update
-  sudo apt-get install curl -y
+  sudo apt-get -y install curl
   curl -L https://www.opscode.com/chef/install.sh | sudo bash
 
   sudo chef-solo -c $WERCKER_SOURCE_DIR/solo.rb -j $WERCKER_SOURCE_DIR/solo.json -l debug
@@ -73,6 +70,7 @@ script: |
 
   wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
   sudo sh -c "echo deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main > /etc/apt/sources.list.d/postgresql.list"
+  sudo apt-get -y install software-properties-common
   sudo add-apt-repository ppa:chris-lea/node.js -y
 
   sudo apt-get update
@@ -81,6 +79,8 @@ script: |
   if [ ! $DATA = "v0.10.33" ] ; then error "Node v0.10.33 expected, got: $DATA" ; fi
 
   npm -v
+
+  sudo npm i -g bower gulp grunt-cli
 
   sudo apt-get update
   sudo apt-get install wget build-essential checkinstall

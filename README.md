@@ -1,4 +1,4 @@
-# ubuntu12.04-webessentials box
+# ubuntu14.04-webessentials box
 
 Base box with most popular libraries for the web installed.
 
@@ -11,6 +11,11 @@ Base box with most popular libraries for the web installed.
 The MIT License (MIT)
 
 # Changelog
+
+## 2.0.0
+- phantomjs updated to 1.9.8
+- nodejs updated to 0.10.33
+- upgraded to ubuntu 14.04 (trusty)
 
 ## 1.0.4
 - phantomjs 1.9.7 fixed

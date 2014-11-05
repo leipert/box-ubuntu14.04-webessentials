@@ -1,8 +1,13 @@
-name: ubuntu12.04-webessentials
-version: 1.0.4
+name: ubuntu14.04-webessentials
+version: 2.0.0
 type: main
-platform: ubuntu@12.04
+platform: ubuntu@14.04
 description: Base box with most popular libraries for the web installed
+keywords:
+  - ubuntu
+  - 14.04
+  - trusty
+  - webessentials
 packages:
   - wget
   - build-essential
@@ -47,6 +52,14 @@ packages:
   - libpng-dev
   - chef@11.12.4
 script: |
+
+  sudo apt-get update
+  sudo apt-get install -y update-manager-core
+  sudo do-release-upgrade -f DistUpgradeViewNonInteractive -m server -d
+  sudo apt-get install -y aptitude
+  sudo aptitude update
+  sudo aptitude safe-upgrade
+
   sudo apt-get update
   sudo apt-get install curl -y
   curl -L https://www.opscode.com/chef/install.sh | sudo bash
@@ -65,7 +78,7 @@ script: |
   sudo apt-get update
   sudo apt-get install nodejs postgresql-client-9.3 libjpeg-dev libpng-dev checkinstall -y
   export DATA=`node -v`
-  if [ ! $DATA = "v0.10.28" ] ; then error "Node v0.10.26 expected, got: $DATA" ; fi
+  if [ ! $DATA = "v0.10.33" ] ; then error "Node v0.10.33 expected, got: $DATA" ; fi
 
   npm -v
 
@@ -90,8 +103,8 @@ script: |
   chmod 755 $HOME/tmp
 
   cd $HOME
-  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
+  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2
   mkdir phantomjs
-  tar -C phantomjs --strip-components=1 -xf phantomjs-1.9.7-linux-x86_64.tar.bz2
+  tar -C phantomjs --strip-components=1 -xf phantomjs-1.9.8-linux-x86_64.tar.bz2
   echo 'export PATH="$HOME/phantomjs/bin:$PATH"' >> ~/.bash_profile
   phantomjs/bin/phantomjs -v

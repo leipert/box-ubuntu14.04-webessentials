@@ -12,8 +12,11 @@ The MIT License (MIT)
 
 # Changelog
 
-## 2.0.1
-- npm updated to
+## 2.1.0
+- npm updated to 2.1.8
+- added imagemin 3.0.0
+- fixed versions bower@1.3.12 gulp@3.8.10 grunt-cli@0.1.13
+- Removed optipng, use imagemin instead
 
 ## 2.0.0
 - phantomjs updated to 1.9.8

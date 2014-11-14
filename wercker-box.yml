@@ -66,10 +66,7 @@ script: |
   cd $WERCKER_SOURCE_DIR
   export
   ./hosts.sh
-  sudo apt-get --purge remove postgresql\*
 
-  wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | sudo apt-key add -
-  sudo sh -c "echo deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main > /etc/apt/sources.list.d/postgresql.list"
   sudo apt-get -y install software-properties-common
   sudo add-apt-repository ppa:chris-lea/node.js -y
 
@@ -78,8 +75,9 @@ script: |
   export DATA=`node -v`
   if [ ! $DATA = "v0.10.33" ] ; then error "Node v0.10.33 expected, got: $DATA" ; fi
 
-  npm -v
   sudo npm i -g npm@2.1.8
+  npm -v
+
   sudo npm i -g bower@1.3.12 gulp@3.8.10 grunt-cli@0.1.13 imagemin@3.0.0
 
   sudo apt-get update

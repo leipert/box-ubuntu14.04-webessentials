@@ -12,6 +12,9 @@ The MIT License (MIT)
 
 # Changelog
 
+## 2.0.1
+- npm updated to
+
 ## 2.0.0
 - phantomjs updated to 1.9.8
 - nodejs updated to 0.10.33

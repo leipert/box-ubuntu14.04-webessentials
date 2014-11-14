@@ -1,5 +1,5 @@
 name: ubuntu14.04-webessentials
-version: 2.0.0
+version: 2.0.1
 type: main
 platform: ubuntu@14.04
 inherits: ruudk/ubuntu14.04@1.0.0
@@ -17,7 +17,7 @@ packages:
   - nano
   - language-pack-en
   - nodejs@0.10.33
-  - npm@1.4.3
+  - npm@2.1.8
   - grunt
   - gulp
   - bower
@@ -79,7 +79,7 @@ script: |
   if [ ! $DATA = "v0.10.33" ] ; then error "Node v0.10.33 expected, got: $DATA" ; fi
 
   npm -v
-
+  sudo npm i -g npm@2.1.8
   sudo npm i -g bower gulp grunt-cli
 
   sudo apt-get update
